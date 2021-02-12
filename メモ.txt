@@ -1,0 +1,32 @@
+【参考デザイン】
+https://tokyocafe365days.com/
+
+【DB設計】
+
+table:Users
+email email not null
+password varchar(20) not null
+name varchar(20) not null
+gender integer not null 0:女性 1:男性 2:その他
+age integer not null 0:10代 1:20代 2:30代 3:40代 4:50代 5:60代 6:70代以上
+from string not null
+icon text null
+content text null
+
+table:shops
+name varchar(255) not null
+area varchar(20) not null
+address varchar(255) null
+image text null
+content text null
+wifi integer not null 0~1
+outlet integer not null 0~1
+voice integer not null 0~5 // 静かさ
+capacity integer not null 0~5 // 混雑度
+cuisine integer not null 0~5 // メニューの充実度
+user_id unsignedBigInteger not null
+start_time time not null
+end_time time not null
+map string null
+caution text null
+※口コミ機能を追加予定
