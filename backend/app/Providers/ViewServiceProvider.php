@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Http\View\Composers\HeaderBgComposer;
+// use App\Http\View\Composers\AreaNameComposer;
 use Illuminate\Support\Facades\View;
 
 class ViewServiceProvider extends ServiceProvider
@@ -26,5 +27,6 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('layouts.index', HeaderBgComposer::class);
+        // View::composer('*', AreaNameComposer::class);
     }
 }

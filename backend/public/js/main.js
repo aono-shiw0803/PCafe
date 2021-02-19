@@ -18,7 +18,12 @@ $(function(){
 // フラッシュメッセージ
 $(function(){
   setTimeout(function(){
-    $('.flash').fadeOut(300);
-  }, 2500);
+    $('.flash').addClass('fadeIn');
+  }, 300);
+  $('.flash.fadeIn').ready(function(){
+    setTimeout(function(){
+      $('.flash.fadeIn').removeClass('fadeIn');
+    }, 2500);
+  });
 });
 // フラッシュメッセージ

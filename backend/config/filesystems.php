@@ -61,8 +61,16 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
-            'endpoint' => env('AWS_URL'),
+            // 'endpoint' => env('AWS_URL'),
         ],
+        // 's3' => [
+        //     'driver' => 's3',
+        //     'key' => 'AKIA5HCBJEW3MZJKA3GM',
+        //     'secret' => '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',
+        //     'region' => 'ap-northeast-1',
+        //     'bucket' => 'pcafe',
+        //     'endpoint' => 'https://s3-ap-northeast-1.amazonaws.com/pcafe/',
+        // ],
 
     ],
 

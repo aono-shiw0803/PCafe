@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::TOP;
 
     /**
      * Create a new controller instance.
@@ -71,9 +72,14 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'age' => $data['age'],
-            'gender' => $data['age'],
-            'from' => $data['age'],
+            'gender' => $data['gender'],
+            'from' => $data['from'],
             'password' => Hash::make($data['password']),
         ]);
+        // return redirect('shops')->with('flash_message', 'Welocome to PCafe！');
+    }
+
+    public function registered(Request $request){
+      return redirect('shops')->with('flash_message', 'Welocome to PCafe！');
     }
 }

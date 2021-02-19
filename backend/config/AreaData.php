@@ -11,7 +11,7 @@ return [
     ['url' => 'marunouchi_otemachi', 'name' => '丸の内・大手町'],
     ['url' => 'ginza_yaesu_nihonbashi', 'name' => '銀座・八重洲・日本橋'],
     ['url' => 'aoyama_akasaka', 'name' => '青山・赤坂'],
-    ['url' => 'roppongi_azabu', 'name' => '六本木・麻布十番・西麻布'],
+    ['url' => 'roppongi_azabujuban_nishiazabu', 'name' => '六本木・麻布十番・西麻布'],
     ['url' => 'toranomon_hibiya', 'name' => '虎ノ門・日比谷'],
   ]
 ];

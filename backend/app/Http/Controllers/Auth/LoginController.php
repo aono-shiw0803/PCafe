@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::TOP;
+    // protected $redirectTo = RouteServiceProvider::TOP;
 
     /**
      * Create a new controller instance.
@@ -40,5 +41,14 @@ class LoginController extends Controller
 
     public function username(){
       return 'name';
+    }
+    public function authenticated(Request $request){
+      return redirect('shops')->with('flash_message', 'You are now logged！');
+    }
+
+    public function logout(Request $request){
+      $this->guard()->logout();
+      $request->session()->invalidate();
+      return $this->loggedOut($request) ?: redirect('/')->with('flash_message', 'You logged out！');
     }
 }

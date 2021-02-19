@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  @if(session('flash'))
+  @if(session('flash_message'))
     <div class="flash">
       <p>{{session('flash_message')}}</p>
     </div>
@@ -27,14 +27,14 @@
       <li class="main-tema">ーエリアから探すー
         <ul class="sub-tema">
           @foreach(config('AreaData.areas') as $area)
-            <li><a href="http://localhost/shops/{{$area['url']}}">{{$area['name']}}</a></li>
+            <li><a href="{{route('shops.area', ['area' => $area['url']])}}">{{$area['name']}}</a></li>
           @endforeach
         </ul>
       </li>
       <li class="main-tema">ーテーマから探すー
         <ul class="sub-tema">
           @foreach(config('TemaData.temas') as $tema)
-            <li><a href="http://localhost/shops/{{$tema['url']}}">{{$tema['name']}}</a></li>
+            <li><a href="{{route('shops.tema', ['tema' => $tema['url']])}}">{{$tema['name']}}</a></li>
           @endforeach
         </ul>
       </li>
@@ -49,7 +49,7 @@
           <li><a href="{{route('register')}}"><i class="fas fa-user-plus"></i>新規登録</a></li>
         @endif
       @else
-      <li><a href="http://localhost:8001/users/{{Auth::User()->id}}">{{Auth::User()->name}}</a></li>
+      <li>ログイン中：<a href="{{route('users.show', ['user' => Auth::User()->id])}}">{{Auth::User()->name}}</a></li>
       <li>
         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           ログアウト
@@ -76,11 +76,14 @@
       <li><i id="open" class="fas fa-bars"></i></li>
       <li><a href="{{route('tops.index')}}">TOP</a></li>
       <li><a href="{{route('shops.index')}}">カフェ一覧</a></li>
-      <li><a href="{{route('shops.create')}}">カフェ登録</a></li>
       @if(Auth::User())
-        <li><a href="http://localhost:8001/users/{{Auth::User()->id}}">マイページ</a></li>
+        <li><a href="{{route('shops.create')}}">カフェ登録</a></li>
+        <li><a href="{{route('photos.index')}}">カフェフォト</a></li>
+        <li><a href="{{route('users.index')}}">ユーザー一覧</a></li>
+        <li><a href="{{route('users.show', ['user' => Auth::User()->id])}}">マイページ</a></li>
+      @else
+        <li><a href="{{route('contacts.create')}}">お問い合わせ</a></li>
       @endif
-      <li><a href="{{route('users.index')}}">ユーザー一覧</a></li>
       <li><input type="text" value="" placeholder="Search..."><input type="submit" value="検索"></li>
     </ul>
   </nav>
@@ -93,24 +96,25 @@
       <ul>
         <li class="search">エリアから探す</li>
         @foreach(config('ShopData.areas') as $area)
-          <li><a href="http://localhost:8001/shops/{{$area['url']}}">{{$area['name']}}</a></li>
+          <li><a href="{{route('shops.area', ['area' => $area['url']])}}">{{$area['name']}}</a></li>
         @endforeach
       </ul>
       <ul>
         <li class="search">テーマから探す</li>
         @foreach(config('TemaData.temas') as $tema)
-          <li><a href="http://localhost:8001/shops/{{$tema['url']}}">{{$tema['name']}}</a></li>
+          <li><a href="{{route('shops.tema', ['tema' => $tema['url']])}}">{{$tema['name']}}</a></li>
         @endforeach
+        <li><a href="{{route('photos.index')}}">カフェフォト</a></li>
       </ul>
     </div>
   </main>
 
   <!-- <footer>
-    <h2><a href="{{route('shops.index')}}">PCafe</a></h2>
+    <h2><a href="{{route('tops.index')}}">PCafe</a></h2>
     <ul>
       <li>© 2021 PCafe All Rights Reserved</li>
       <li><a target="_blank" href="#">プライバシーポリシー</a></li>
-      <li><a href="#">お問い合わせ</a></li>
+      <li><a href="{{route('contacts.create')}}">お問い合わせ</a></li>
     </ul>
   </footer> -->
 </body>
