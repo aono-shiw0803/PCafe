@@ -1,8 +1,11 @@
 @extends('layouts.index')
 
 @section('main')
-<div class="shops-area-first">
-  @forelse($shops as $shop)
+<div class="shops-index-first">
+  <h2>ALL Cafe</h2>
+</div>
+<div class="shops-index-second">
+  @foreach($shops as $shop)
     <a class="shops-detail" href="{{route('shops.show', ['shop' => $shop->id])}}">
       <ul class="facility">
         @if($shop->wifi === 0)
@@ -44,15 +47,20 @@
         @endif
         <li class="center">【{{$shop->getAreaNameJpn()}}】</li>
         <li class="center">{{$shop->name}}</li>
-        @if($shop->liked_by_user())
-          <li class="center"><p><i class="fas fa-heart liked"></i><span>{{$shop->likes->count()}}</span></p></li>
-        @else
-          <li class="center"><p><i class="fas fa-heart no-like"></i><span>{{$shop->likes->count()}}</span></p></li>
-        @endif
       </ul>
     </a>
-  @empty
-    <p class="empty">カフェ情報がありません。</p>
-  @endforelse
+  @endforeach
 </div>
+
+@if($like_model->likeExist(Auth::User()->id, $shop->id))
+<p class="favorite-marke">
+  <a class="js-like-toggle loved" href="" data-postid="{{ $shop->id }}"><i class="fas fa-heart"></i></a>
+  <span class="likesCount">{{$shop->likes_count}}</span>
+</p>
+@else
+<p class="favorite-marke">
+  <a class="js-like-toggle" href="" data-postid="{{ $shop->id }}"><i class="fas fa-heart"></i></a>
+  <span class="likesCount">{{$shop->likes_count}}</span>
+</p>
+@endif​
 @endsection

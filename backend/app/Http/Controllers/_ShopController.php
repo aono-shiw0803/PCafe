@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use App\Shop;
 use App\User;
 use App\Photo;
@@ -12,49 +10,51 @@ use App\Like;
 use Carbon\Carbon;
 use App\Http\Requests\ShopsRequest;
 use Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
-    public function like($id){
-      Like::create([
-        'shop_id' => $id,
-        'user_id' => Auth::User()->id,
-      ]);
-      return redirect()->back();
-    }
-
-    public function unlike($id){
-      $like = Like::where('shop_id', $id)->where('user_id', Auth::User()->id)->first();
-      $like->delete();
-      return redirect()->back();
-    }
-
     public function index(Request $request){
-      $shops = Shop::orderBy('updated_at', 'desc')->get();
-      return view('shops.index', ['shops'=>$shops, 'users'=>$request->users]);
+      $data = [];
+      //withCount('テーブル名')とすることで、リレーションの数を取得（viewの{{$shop->likes_count}}に該当）
+      $shops = Shop::withCount('likes')->orderBy('updated_at', 'desc')->get();
+      $like_model = new Like;
+      return view('shops.index', ['shops'=>$shops, 'like_model'=>$like_model, 'users'=>$request->users]);
     }
 
-    public function ranking(){
-      $shops = Shop::withCount('likes')->orderBy('likes_count', 'desc')->paginate(9);
-      return view('shops.ranking', ['shops'=>$shops]);
+    public function agaxlike(Request $request){
+      $id = Auth::User()->id;
+      $shop_id = $request->shop_id;
+      $like = new Like;
+      $shop = Shop::findOrFail($shop_id);
+
+      // 既に良いねしている場合
+      if($like->likeExist($id, $shop_id)){
+        // likesテーブルのレコードを削除
+        $like = Like::where('shop_id', $shop_id)->where('user_id', $id)->delete();
+      } else {
+        // まだいいねをしていない場合はlikesテーブルに新しいレコードを作成する
+        $like = new Like;
+        $like->shop_id = $request->shop_id;
+        $like->user_id = Auth::User()->id;
+        $like->save();
+      }
+
+      //withCountとすればリレーションの数を○○_countという形で取得できる（今回の場合はいいねの総数）
+      $shopLikesCount = $shop->withCount('likes')->likes_count;
+      //一つの変数にajaxに渡す値をまとめる（少ない場合はまとめる必要はないが一応）
+      $json = [
+          'shopLikesCount' => $shopLikesCount,
+      ];
+      //下記の記述で「ajaxlike.jsファイル」にパラメーター（いいねの総数）を返すことができる。
+      return response()->json($json);
     }
 
-    // 直近30日以内に登録されたカフェのみ表示（ロジックはViewComposerに記述）
-    public function createdAt(){
-      return view('shops.created_at');
-    }
-    // 直近30日以内に更新されたカフェのみ表示（ロジックはViewComposerに記述）
-    public function updatedAt(){
-      return view('shops.updated_at');
-    }
-
-    // エリア別で探す
     public function area($area){
       $shops = Shop::where('area', $area)->orderBy('updated_at', 'desc')->get();
       return view('shops.area', ['shops'=>$shops, 'area'=>$area]);
     }
 
-    // テーマ別で探す
     public function tema($tema){
       $shops = Shop::where($tema, 0)->orderBy('updated_at', 'desc')->get();
       return view('shops.tema', ['shops'=>$shops, 'tema'=>$tema]);

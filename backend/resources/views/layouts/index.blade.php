@@ -106,6 +106,15 @@
         @endforeach
         <li><a href="{{route('photos.index')}}">カフェフォト</a></li>
       </ul>
+      <ul>
+        <li class="search">その他</li>
+        @if(Auth::User())
+          <li><a href="http://localhost:8001/users/{{Auth::User()->id}}/favorite">お気に入りに登録したカフェ</a></li>
+        @endif
+        <li><a href="{{route('shops.ranking')}}">人気のカフェ9選</a></li>
+        <li><a href="{{route('shops.createdAt')}}">1カ月以内に登録されたカフェ</a></li>
+        <li><a href="{{route('shops.updatedAt')}}">1カ月以内に更新されたカフェ</a></li>
+      </ul>
     </div>
   </main>
 

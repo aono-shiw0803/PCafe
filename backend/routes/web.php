@@ -19,6 +19,7 @@ Route::get('/', 'TopController@index')->name('tops.index');
 // ユーザーページ
 Route::group(['prefix' => 'users', 'as' => 'users.', 'middleware' => 'auth'], function(){
   Route::get('/', 'UserController@index')->name('index');
+  Route::get('/{user}/favorite', 'UserController@favorite')->name('favorite')->where('user', '[0-9]+');
   Route::get('/{user}', 'UserController@show')->name('show')->where('shop', '[0-9]+');
   Route::get('/{user}/edit', 'UserController@edit')->name('edit');
   Route::put('/{user}', 'UserController@update')->name('update');
@@ -33,14 +34,21 @@ Route::group(['prefix' => 'shops', 'as' => 'shops.', 'middleware' => 'auth'], fu
   Route::get('/{shop}/edit', 'ShopController@edit')->name('edit');
   Route::put('/{shop}', 'ShopController@update')->name('update');
   Route::post('/delete/{id}', 'ShopController@delete')->name('delete');
+  Route::get('/like/{id}', 'ShopController@like')->name('like')->where('id', '[0-9]+');
+  Route::get('/unlike/{id}', 'ShopController@unlike')->name('unlike')->where('id', '[0-9]+');
 });
+Route::get('/shops/ranking', 'ShopController@ranking')->name('shops.ranking');
 
 // カフェページ（ジャンル別）
 Route::group(['prefix' => 'shops'], function(){
   Route::get('/', 'ShopController@index')->name('shops.index');
+  Route::get('/created_at', 'ShopController@createdAt')->name('shops.createdAt');
+  Route::get('/updated_at', 'ShopController@updatedAt')->name('shops.updatedAt');
   Route::get('/{tema}', 'ShopController@tema')->where('tema', 'wifi|station|fashionable|coffee|spot|liquor|hotel')->name('shops.tema');
   Route::get('/{area}', 'ShopController@area')->name('shops.area');
 });
+// ajax
+// Route::post('ajaxlike', 'ShopController@ajaxlike')->name('shops.ajaxlike')->middleware('auth');
 
 Route::group(['prefix' => 'contacts', 'as' => 'contacts.'], function(){
   // 入力ページ

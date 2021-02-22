@@ -1,7 +1,10 @@
 @extends('layouts.index')
 
 @section('main')
-<div class="shops-area-first">
+<div class="shops-index-first">
+  <h2>お気に入りに登録したカフェ</h2>
+</div>
+<div class="users-favorite-second">
   @forelse($shops as $shop)
     <a class="shops-detail" href="{{route('shops.show', ['shop' => $shop->id])}}">
       <ul class="facility">

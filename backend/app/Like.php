@@ -17,14 +17,4 @@ class Like extends Model
     public function shop(){
       return $this->belongsTo('App\Shop');
     }
-
-    // 「いいね」されているか確認するメソッド
-    public function likeExist($id, $shop_id){
-      $exist = Like::where('user_id', '=', $id)->where('shop_id', '=', $shop_id)->get();
-      if(!$exist->isEmpty()){
-        return true;
-      } else {
-        return false;
-      }
-    }
 }

@@ -216,6 +216,11 @@
         <li>HP：<a target="_blank" href="{{$shop->url}}">{{$shop->url}}</a></li>
       @endif
       <li>登録ユーザー：<a href="{{url('/users', $shop->user_id)}}">{{$shop->user->name}}</a></li>
+      @if($shop->liked_by_user())
+        <li>ユーザー評価：<a href="{{route('shops.unlike', ['id' => $shop->id])}}" onclick="return confirm('お気に入りを解除しますか？')"><i class="fas fa-heart liked"></i>{{$shop->likes->count()}}</a><span>※お気に入り登録済み</span></li>
+      @else
+        <li>ユーザー評価：<a href="{{route('shops.like', ['id' => $shop->id])}}" onclick="return confirm('お気に入りに登録しますか？')"><i class="fas fa-heart no-like"></i>{{$shop->likes->count()}}</a></li>
+      @endif
     </ul>
   </div>
   @if($shop->caution != null)

@@ -1,8 +1,11 @@
 @extends('layouts.index')
 
 @section('main')
-<div class="shops-area-first">
-  @forelse($shops as $shop)
+<div class="shops-index-first">
+  <h2>1カ月以内に更新されたカフェ</h2>
+</div>
+<div class="shops-index-second">
+  @foreach($shops as $shop)
     <a class="shops-detail" href="{{route('shops.show', ['shop' => $shop->id])}}">
       <ul class="facility">
         @if($shop->wifi === 0)
@@ -51,8 +54,6 @@
         @endif
       </ul>
     </a>
-  @empty
-    <p class="empty">カフェ情報がありません。</p>
-  @endforelse
+  @endforeach
 </div>
 @endsection

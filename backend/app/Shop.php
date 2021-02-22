@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Shop extends Model
 {
@@ -102,5 +103,20 @@ class Shop extends Model
         4 => 'やや豊富',
         5 => '非常に豊富',
       ][$this->cuisine] ?? '不明';
+    }
+
+    public function liked_by_user(){
+      $id = Auth::id();
+      $likers = [];
+      // likers配列にいいねをしたユーザーのidを入れる
+      foreach($this->likes as $like){
+        array_push($likers, $like->user_id);
+      }
+      // もしlikers配列の中にログインしているユーザーのidが入っていればtrue、無ければfalseを返す
+      if(in_array($id, $likers)){
+        return true;
+      } else {
+        return false;
+      }
     }
 }

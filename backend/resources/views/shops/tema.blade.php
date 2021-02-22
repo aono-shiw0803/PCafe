@@ -44,6 +44,11 @@
         @endif
         <li class="center">【{{$shop->getAreaNameJpn()}}】</li>
         <li class="center">{{$shop->name}}</li>
+        @if($shop->liked_by_user())
+          <li class="center"><p><i class="fas fa-heart liked"></i><span>{{$shop->likes->count()}}</span></p></li>
+        @else
+          <li class="center"><p><i class="fas fa-heart no-like"></i><span>{{$shop->likes->count()}}</span></p></li>
+        @endif
       </ul>
     </a>
   @empty

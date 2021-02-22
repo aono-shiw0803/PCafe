@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 use App\User;
 use App\Shop;
+use App\Like;
 use Carbon\Carbon;
 use Storage;
 
@@ -16,13 +17,17 @@ class UserController extends Controller
       return view('users.index', ['users'=>$users]);
     }
 
+    // お気に入りに登録したカフェ一覧
+    public function favorite(User $user){
+      $shops = Shop::whereHas('likes', function($query) use($user){
+        $query->where('user_id', $user->id);
+      })->get();
+      return view('users.favorite', ['shops'=>$shops]);
+    }
+
     public function show(User $user){
       return view('users.show', ['user'=>$user]);
     }
-    // public function show($id){
-    //   $user = User::find($id);
-    //   return view('users.show', ['user'=>$user]);
-    // }
 
     public function edit(User $user){
       $user = User::find($user->id);

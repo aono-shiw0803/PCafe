@@ -1,7 +1,10 @@
 @extends('layouts.index')
 
 @section('main')
-<div class="shops-area-first">
+<div class="shops-ranking-first">
+  <h2>人気のカフェ9選</h2>
+</div>
+<div class="shops-ranking-second">
   @forelse($shops as $shop)
     <a class="shops-detail" href="{{route('shops.show', ['shop' => $shop->id])}}">
       <ul class="facility">
@@ -45,9 +48,9 @@
         <li class="center">【{{$shop->getAreaNameJpn()}}】</li>
         <li class="center">{{$shop->name}}</li>
         @if($shop->liked_by_user())
-          <li class="center"><p><i class="fas fa-heart liked"></i><span>{{$shop->likes->count()}}</span></p></li>
+          <li class="center"><p><i class="fas fa-heart liked"></i><span>{{$shop->aono->count()}}</span></p></li>
         @else
-          <li class="center"><p><i class="fas fa-heart no-like"></i><span>{{$shop->likes->count()}}</span></p></li>
+          <li class="center"><p><i class="fas fa-heart no-like"></i><span>{{$shop->aono->count()}}</span></p></li>
         @endif
       </ul>
     </a>
