@@ -224,6 +224,7 @@
     </ul>
   </div>
   @if($shop->caution != null)
+    <p class="caution-title">※注意点</p>
     <div class="shops-show-caution">
       <p>{{$shop->caution}}</p>
     </div>
@@ -251,5 +252,42 @@
     </a>
     @endif
   @endforeach
+</div>
+<div class="shops-show-third">
+  <h2>口コミ（{{$shop->comments->count()}}件）</h2>
+  @if(Auth::User())
+    <a class="comments-create-btn" href="{{route('comments.create', ['shop' => $shop->id])}}">口コミを投稿</a>
+  @endif
+  <div class="comments-list">
+    @forelse($comments as $comment)
+      <table>
+        <tr>
+          @if($comment->face === 0)
+            <td><i class="far fa-smile-wink positive"></i>{{$comment->title}}</td>
+          @else
+            <td><i class="far fa-tired negative"></i>{{$comment->title}}</td>
+          @endif
+        </tr>
+        <tr>
+          <td><p>{{$comment->content}}</p></td>
+        </tr>
+        <tr>
+          <td>投稿日時：{{$comment->created_at->format('Y-m-d')}}&nbsp;&nbsp;&nbsp;&nbsp;投稿ユーザー：<a href="{{route('users.show', ['user' => $comment->user_id])}}">{{$comment->user->name}}</a></td>
+        </tr>
+        @if($comment->user_id === Auth::User()->id)
+          <tr>
+            <td class="delete">
+              <form method="post" action="{{route('comments.delete', ['shop' => $shop->id, 'id' => $comment->id])}}">
+                @csrf
+                <input type="submit" value="削除" onclick="return confirm('本当に削除してもよろしいですか？')">
+              </form>
+            </td>
+          </tr>
+        @endif
+      </table>
+    @empty
+      <p>口コミはありません。</p>
+    @endforelse
+  </div>
 </div>
 @endsection

@@ -243,6 +243,7 @@ header .header-text h2{
   font-size:20px;
   text-shadow:1px 1px 0 #999;
 }
+
 nav{
   display:grid;
   align-items:center;
@@ -1108,13 +1109,22 @@ footer ul li a:hover{
   color:#996666;
   margin-left:10px;
 }
+.shops-show-first .caution-title{
+  text-align:center;
+  padding:5px;
+  margin:0;
+  font-size:13px;
+  width:80px;
+  border:1px solid #f00;
+  border-radius:3px 3px 0 0;
+  background-color:#f00;
+  color:#fff;
+}
 .shops-show-first .shops-show-caution{
   display:grid;
   align-items:center;
   border:1px solid #f00;
-  border-radius:3px;
-  margin:30px 0;
-  min-height:30px;
+  border-radius:0 3px 3px 3px;
   font-size:13px;
 }
 .shops-show-first .shops-show-caution p{
@@ -1167,6 +1177,72 @@ footer ul li a:hover{
 .shops-show-second a img{
   width:100%;
   height:100%;
+}
+.shops-show-third{
+  width:80%;
+  margin:30px auto;
+}
+.shops-show-third h2{
+  border-bottom:2px solid #996666;
+  padding:5px;
+  margin-bottom:20px;
+  width:50%;
+  color:#996666;
+  font-size:17px;
+}
+.shops-show-third .comments-create-btn{
+  border:1px solid #996666;
+  border-radius:3px;
+  padding:5px 30px;
+  font-size:15px;
+  color:#996666;
+}
+.shops-show-third .comments-create-btn:hover{
+  opacity:0.5;
+}
+.shops-show-third .comments-list{
+  margin-top:30px;
+}
+.shops-show-third .comments-list table{
+  width:100%;
+  border:1px solid #996666;
+  box-shadow:3px 3px 0 #996666;
+  background-color:#f7f5f5;
+  margin-bottom:15px;
+}
+.shops-show-third .comments-list table tr{
+  border-bottom:1px solid #996666;
+}
+.shops-show-third .comments-list table tr td{
+  padding:5px;
+  font-size:13px;
+}
+.shops-show-third .comments-list table tr td p{
+  color:#000;
+}
+.shops-show-third .comments-list p{
+  color:#f00;
+}
+.shops-show-third .comments-list table tr td a{
+  text-decoration:underline;
+  color:#996666;
+}
+.shops-show-third .comments-list table tr td a:hover{
+  opacity:0.5;
+}
+.shops-show-third .comments-list table tr .delete{
+  text-align:right;
+  color:#f00;
+}
+.positive{
+  color:#f00;
+  margin-right:7px;
+  font-size:20px;
+}
+.negative{
+  color:#00f;
+  margin-right:7px;
+  font-size:20px;
 }
 /* ----------shops.show---------- */
 
@@ -1539,6 +1615,70 @@ footer ul li a:hover{
 }
 /* ----------contacts.complete---------- */
 
-/* .loved i{
-  color:red !important;
-} */
+/* ----------comments.create---------- */
+.comments-create-first{
+  text-align:center;
+  width:90%;
+  margin:0 auto;
+}
+.comments-create-first h2{
+  color:#996666;
+  font-size:25px;
+  margin:10px 0;
+}
+.comments-create-first p{
+  color:#996666;
+  font-size:15px;
+  margin-bottom:10px;
+}
+.comments-create-first span{
+  color:#996666;
+  font-size:15px;
+}
+.comments-create-first span a{
+  text-decoration:underline;
+}
+.comments-create-first span a:hover{
+  opacity:0.5;
+}
+.comments-create-second{
+  width:90%;
+  margin:40px auto 0;
+  border-top:2px solid #996666;
+  border-bottom:2px solid #996666;
+}
+.comments-create-second table{
+  margin:20px;
+}
+.comments-create-second table tr{
+  height:60px;
+}
+.comments-create-second table tr th{
+  font-weight:normal;
+  padding-right:5px;
+  font-size:13px;
+}
+.comments-create-second table tr td{
+  font-size:13px;
+}
+.comments-create-second table tr td input{
+  width:400px;
+}
+.comments-create-second table tr td select{
+  width:150px;
+}
+.comments-create-second table tr td input,
+.comments-create-second table tr td select{
+  background-color:#fff;
+  border:1px solid #996666;
+  padding:5px;
+}
+.comments-create-second table tr td textarea{
+  background-color:#fff;
+  border:1px solid #996666;
+  padding:5px;
+  height:200px;
+  width:400px;
+  margin-bottom:20px;
+}
+/* ----------shops.create---------- */

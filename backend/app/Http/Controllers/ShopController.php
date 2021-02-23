@@ -9,6 +9,7 @@ use App\Shop;
 use App\User;
 use App\Photo;
 use App\Like;
+use App\Comment;
 use Carbon\Carbon;
 use App\Http\Requests\ShopsRequest;
 use Storage;
@@ -62,7 +63,8 @@ class ShopController extends Controller
 
     public function show(Shop $shop){
       $photos = Photo::all();
-      return view('shops.show', ['shop'=>$shop, 'photos'=>$photos]);
+      $comments = Comment::where('shop_id', $shop->id)->orderBy('created_at', 'desc')->paginate(10);
+      return view('shops.show', ['shop'=>$shop, 'photos'=>$photos, 'comments'=>$comments]);
     }
 
     public function create(Shop $shop){

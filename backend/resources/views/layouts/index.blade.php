@@ -84,7 +84,6 @@
       @else
         <li><a href="{{route('contacts.create')}}">お問い合わせ</a></li>
       @endif
-      <li><input type="text" value="" placeholder="Search..."><input type="submit" value="検索"></li>
     </ul>
   </nav>
 
@@ -109,7 +108,7 @@
       <ul>
         <li class="search">その他</li>
         @if(Auth::User())
-          <li><a href="http://localhost:8001/users/{{Auth::User()->id}}/favorite">お気に入りに登録したカフェ</a></li>
+          <li><a href="{{route('users.favorite', ['user' => Auth::User()->id])}}">お気に入りに登録したカフェ</a></li>
         @endif
         <li><a href="{{route('shops.ranking')}}">人気のカフェ9選</a></li>
         <li><a href="{{route('shops.createdAt')}}">1カ月以内に登録されたカフェ</a></li>

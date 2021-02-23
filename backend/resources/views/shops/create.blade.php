@@ -262,7 +262,7 @@
         </tr>
         <tr>
           <th>注意事項</th>
-          <td><textarea name="caution" placeholder="例）※席は2時間までの利用制限があります。">{{old('caution')}}</textarea></td>
+          <td><textarea name="caution" placeholder="例）席は2時間までの利用制限があります。">{{old('caution')}}</textarea></td>
         </tr>
       </tbody>
     </table>

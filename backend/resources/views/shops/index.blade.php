@@ -6,7 +6,7 @@
 </div>
 <div class="shops-index-second">
   @foreach($shops as $shop)
-    <a class="shops-detail">
+    <a class="shops-detail" href="{{route('shops.show', ['shop' => $shop->id])}}">
       <ul class="facility">
         @if($shop->wifi === 0)
           <li><i class="fas fa-wifi"></i></li>

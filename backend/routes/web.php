@@ -20,9 +20,9 @@ Route::get('/', 'TopController@index')->name('tops.index');
 Route::group(['prefix' => 'users', 'as' => 'users.', 'middleware' => 'auth'], function(){
   Route::get('/', 'UserController@index')->name('index');
   Route::get('/{user}/favorite', 'UserController@favorite')->name('favorite')->where('user', '[0-9]+');
-  Route::get('/{user}', 'UserController@show')->name('show')->where('shop', '[0-9]+');
-  Route::get('/{user}/edit', 'UserController@edit')->name('edit');
-  Route::put('/{user}', 'UserController@update')->name('update');
+  Route::get('/{user}', 'UserController@show')->name('show')->where('user', '[0-9]+');
+  Route::get('/{user}/edit', 'UserController@edit')->name('edit')->where('user', '[0-9]+');
+  Route::put('/{user}', 'UserController@update')->name('update')->where('user', '[0-9]+');
   Route::post('/delete/{id}', 'UserController@delete')->name('delete');
 });
 
@@ -69,5 +69,12 @@ Route::group(['prefix' => 'photos', 'as' => 'photos.'], function(){
 });
 Route::get('/shops/{shop}/create', 'PhotoController@create')->where('shop', '[0-9]+')->name('photos.create')->middleware('auth');
 Route::get('/photos/{photo}', 'PhotoController@show')->where('photo', '[0-9]+')->name('photos.show')->middleware('auth');
+
+// 口コミ
+Route::group(['prefix' => 'shops', 'as' => 'comments.', 'middleware' => 'auth'], function(){
+  Route::get('/{shop}/comments/create', 'CommentController@create')->name('create')->where('shop', '[0-9]+');
+  Route::post('/{shop}/comments/store', 'CommentController@store')->name('store')->where('shop', '[0-9]+');
+  Route::post('/{shop}/comments/delete/{id}', 'CommentController@delete')->name('delete')->where('shop', '[0-9]+');
+});
 
 Auth::routes();
