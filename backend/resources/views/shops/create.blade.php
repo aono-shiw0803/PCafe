@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('shops.create'))
+
 @section('main')
 <div class="shops-create-first">
   <h2>ーカフェ登録フォームー</h2>

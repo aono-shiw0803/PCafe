@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('contacts'))
+
 @section('main')
 <div class="contacts-create-first">
   <h2>ーお問い合わせフォームー</h2>

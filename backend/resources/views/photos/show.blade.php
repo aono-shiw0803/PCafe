@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('photos.show', $photo))
+
 @section('main')
 <div class="photos-show-first">
   <div class="photos-show-title">

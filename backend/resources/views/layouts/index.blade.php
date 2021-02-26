@@ -61,8 +61,8 @@
       @endguest
     </ul>
   </div>
-  <div class="breadcrumbs">
-  </div>
+
+  @yield('breadcrumbs')
 
   <header style="background-image:url('/storage/{{$headerBgs}}.jpg')">
     <div class="header-text">
@@ -103,10 +103,10 @@
         @foreach(config('TemaData.temas') as $tema)
           <li><a href="{{route('shops.tema', ['tema' => $tema['url']])}}">{{$tema['name']}}</a></li>
         @endforeach
-        <li><a href="{{route('photos.index')}}">カフェフォト</a></li>
       </ul>
       <ul>
         <li class="search">その他</li>
+        <li><a href="{{route('photos.index')}}">写真から探す</a></li>
         @if(Auth::User())
           <li><a href="{{route('users.favorite', ['user' => Auth::User()->id])}}">お気に入りに登録したカフェ</a></li>
         @endif

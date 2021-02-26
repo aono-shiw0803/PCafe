@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('photos.index'))
+
 @section('main')
 <div class="photos-index-first">
   <h2>ALL Photo</h2>

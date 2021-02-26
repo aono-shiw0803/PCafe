@@ -52,6 +52,10 @@ class Shop extends Model
       return $this->hasMany('App\Comment');
     }
 
+    public function posts(){
+      return $this->hasMany('App\Post');
+    }
+
     public function getAreaNameJpn(){
       return [
         'shibuya' => '渋谷',

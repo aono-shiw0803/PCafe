@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('comments.create', $shop))
+
 @section('main')
 <div class="comments-create-first">
   <h2>ー口コミ投稿フォームー</h2>

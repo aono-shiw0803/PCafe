@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('register'))
+
 @section('main')
 <div class="register-first">
   <h2>ー新規登録ー</h2>

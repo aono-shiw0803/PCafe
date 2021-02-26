@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('top'))
+
 @section('main')
 <div class="tops-index-first">
   <h2>最近登録されたカフェ3選</h2>

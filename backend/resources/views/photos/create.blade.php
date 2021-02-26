@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('photos.create', $shop))
+
 @section('main')
 <div class="photos-create-first">
   <h2>ーカフェフォト登録フォームー</h2>

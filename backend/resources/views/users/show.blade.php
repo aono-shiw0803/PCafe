@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('users.show', $user))
+
 @section('main')
 <div class="users-show-first">
   @if($user->icon === null)

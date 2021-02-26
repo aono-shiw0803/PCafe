@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('users.edit', $user))
+
 @section('main')
 <div class="users-edit-first">
   <h2>ーユーザー情報編集フォームー</h2>

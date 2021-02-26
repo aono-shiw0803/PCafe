@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('contacts.confirm'))
+
 @section('main')
 <div class="contacts-confirm-first">
   <h2>ーお問い合わせ内容の確認ー</h2>

@@ -216,8 +216,19 @@ table{
 .breadcrumbs{
   background-color:#996666;
   border-top:1px solid #d1b2b2;
-  height:30px;
   width:100%;
+  padding:7px 15px;
+}
+.breadcrumbs li{
+  color:#fff;
+  display:inline-block;
+  font-size:13px;
+}
+.breadcrumbs li a{
+  text-decoration:underline;
+}
+.breadcrumbs li a:hover{
+  opacity:0.5;
 }
 
 header{
@@ -228,7 +239,7 @@ header{
   /* background-image:url('/storage/header-bg.jpg'); */
   background-position:100% 60%;
   width:100%;
-  height:350px;
+  height:300px;
 }
 header .header-text{
   color:#fff;
@@ -592,6 +603,7 @@ footer ul li a:hover{
 .users-index-second a ul{
   display:grid;
   grid-template-rows:160px 30px;
+  background-color:#eee;
 }
 .users-index-second a ul li:first-child{
   display:grid;
@@ -1677,8 +1689,8 @@ footer ul li a:hover{
   background-color:#fff;
   border:1px solid #996666;
   padding:5px;
+  margin-bottom:5px;
   height:200px;
   width:400px;
-  margin-bottom:20px;
 }
 /* ----------shops.create---------- */

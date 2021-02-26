@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('shops.edit', $shop))
+
 @section('main')
 <div class="shops-edit-first">
   <h2>ーカフェ情報編集フォームー</h2>

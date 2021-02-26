@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('contacts.complete'))
+
 @section('main')
 <div class="contacts-complete-first">
   <h2>ー送信が完了しましたー</h2>

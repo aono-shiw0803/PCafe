@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('login'))
+
 @section('main')
 <div class="login-first">
   <h2>ーログインフォームー</h2>

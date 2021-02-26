@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('shops.show', $shop))
+
 @section('main')
 <div class="shops-show-first">
   <div class="shops-show-title">

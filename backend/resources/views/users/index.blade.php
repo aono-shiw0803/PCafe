@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('breadcrumbs', Breadcrumbs::render('users.index'))
+
 @section('main')
 <div class="users-index-first">
   <h2>ユーザー一覧</h2>
