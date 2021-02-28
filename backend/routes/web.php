@@ -50,6 +50,17 @@ Route::group(['prefix' => 'shops'], function(){
 // ajax
 // Route::post('ajaxlike', 'ShopController@ajaxlike')->name('shops.ajaxlike')->middleware('auth');
 
+// スケジュール
+Route::group(['as' => 'posts.', 'middleware' => 'auth'], function(){
+  Route::get('/posts', 'PostController@index')->name('index');
+  Route::get('/shops/{shop}/posts/create', 'PostController@create')->name('create')->where('shop', '[0-9]+');
+  Route::get('/shops/{shop}/posts/{post}', 'PostController@show')->name('show');
+  Route::post('/shops/{shop}/posts/store', 'PostController@store')->name('store')->where('shop', '[0-9]+');
+  Route::get('/shops/{shop}/posts/{post}/edit', 'PostController@edit')->name('edit')->where('shop|post', '[0-9]+');
+  Route::put('/shops/{shop}/posts/{post}', 'PostController@update')->name('update')->where('shop|post', '[0-9]+');
+  Route::post('/shops/{shop}/posts/{post}/delete/{id}', 'PostController@delete')->name('delete')->where('shop|post', '[0-9]+');
+});
+
 Route::group(['prefix' => 'contacts', 'as' => 'contacts.'], function(){
   // 入力ページ
   Route::get('/', 'ContactController@create')->name('create');

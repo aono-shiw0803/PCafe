@@ -18,6 +18,9 @@
       <img src="{{$shop->image}}">
     @endif
   </div>
+  <div class="schedule-btn">
+    <a href="{{route('posts.create', ['shop' => $shop->id])}}">このカフェでスケジュールを登録する</a>
+  </div>
   <div class="shops-show-facility">
     <ul>
       @if($shop->wifi === 0)
@@ -291,5 +294,25 @@
       <p>口コミはありません。</p>
     @endforelse
   </div>
+</div>
+<div class="shops-show-fourth">
+  <h2>ーこのカフェで予定されているスケジュールー</h2>
+    @forelse($posts as $post)
+      <a class="shops-detail" href="{{route('posts.show', ['shop'=>$shop->id, 'post'=>$post->id])}}">
+        @if($post->image == null)
+          <img src="/storage/no-icon.png">
+        @else
+          <img src="{{$post->image}}">
+        @endif
+        <ul>
+          <li>{{$post->day->format('m/d')}}&nbsp;&nbsp;&nbsp;&nbsp;{{$post->start_time->format('H:i')}}〜{{$post->end_time->format('H:i')}}</li>
+          <li>{{$post->title}}</li>
+          <li>利用カフェ：{{$post->shop->name}}</li>
+          <li>登録ユーザー：{{$post->user->name}}&nbsp;&nbsp;&nbsp;&nbsp;登録日：{{$post->created_at->format('Y-m-d')}}</li>
+        </ul>
+      </a>
+    @empty
+      <p class="empty">予定されているスケジュールはありません。</p>
+    @endforelse
 </div>
 @endsection

@@ -7,6 +7,7 @@ use App\Http\Requests\UsersRequest;
 use App\User;
 use App\Shop;
 use App\Like;
+use App\Post;
 use Carbon\Carbon;
 use Storage;
 
@@ -25,8 +26,9 @@ class UserController extends Controller
       return view('users.favorite', ['shops'=>$shops]);
     }
 
-    public function show(User $user){
-      return view('users.show', ['user'=>$user]);
+    public function show(User $user, Shop $shop, Post $post){
+      $posts = Post::where('user_id', $user->id)->orderBy('day', 'desc')->get();
+      return view('users.show', ['user'=>$user, 'posts'=>$posts, 'shop'=>$shop, 'post'=>$post]);
     }
 
     public function edit(User $user){

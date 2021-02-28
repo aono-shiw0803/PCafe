@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Shop;
 use App\User;
 use App\Photo;
+use App\Post;
 use App\Like;
 use App\Comment;
 use Carbon\Carbon;
@@ -64,7 +65,8 @@ class ShopController extends Controller
     public function show(Shop $shop){
       $photos = Photo::all();
       $comments = Comment::where('shop_id', $shop->id)->orderBy('created_at', 'desc')->paginate(10);
-      return view('shops.show', ['shop'=>$shop, 'photos'=>$photos, 'comments'=>$comments]);
+      $posts = Post::where('shop_id', $shop->id)->get();
+      return view('shops.show', ['shop'=>$shop, 'photos'=>$photos, 'comments'=>$comments, 'posts'=>$posts]);
     }
 
     public function create(Shop $shop){

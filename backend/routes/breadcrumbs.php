@@ -90,6 +90,28 @@ Breadcrumbs::for('shops.edit', function($target, $shop){
   $target->push('編集', route('shops.edit', ['shop' => $shop->id]));
 });
 
+// スケジュール登録
+Breadcrumbs::for('posts.index', function($target){
+  $target->parent('top');
+  $target->push('スケジュール一覧', route('posts.index'));
+});
+Breadcrumbs::for('posts.show', function($target, $shop, $post){
+  $target->parent('top');
+  $target->push('スケジュール一覧', route('posts.index'));
+  $target->push('スケジュール詳細', route('posts.show', ['shop' => $shop->id, 'post' => $post->id]));
+});
+Breadcrumbs::for('posts.create', function($target, $shop){
+  $target->parent('top');
+  $target->push('スケジュール一覧', route('posts.index'));
+  $target->push('スケジュール登録', route('posts.create', ['shop' => $shop->id]));
+});
+Breadcrumbs::for('posts.edit', function($target, $shop, $post){
+  $target->parent('top');
+  $target->push('スケジュール一覧', route('posts.index'));
+  $target->push('スケジュール詳細', route('posts.show', ['shop' => $shop->id, 'post' => $post->id]));
+  $target->push('スケジュール内容編集', route('posts.edit', ['shop' => $shop->id, 'post' => $post->id]));
+});
+
 // 写真
 Breadcrumbs::for('photos.index', function($target){
   $target->parent('top');
