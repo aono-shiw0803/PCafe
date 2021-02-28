@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-      'title', 'content', 'day', 'start_time', 'end_time', 'user_id', 'shop_id', 'image',
+      'title', 'content', 'user_id', 'shop_id', 'image',
+    ];
+
+    protected $dates =[
+      'day', 'start_time', 'end_time',
     ];
 
     public function user(){

@@ -48,14 +48,31 @@
   </div>
 @endif
 <div class="users-show-third">
-  <h2>ー最近の活動状況ー</h2>
-  <a href="#">
-    <img src="/storage/no-icon.png"></li>
-    <ul>
-      <li>【滞在日】2021/02/23[TUE]</li>
-      <li>13:00〜18:00</li>
-      <li>利用目的：読書</li>
-    </ul>
-  </a>
+  <h2>ー登録されているスケジュールー</h2>
+    @forelse($posts as $post)
+      @if($now > $post->day)
+      <a class="users-detail opacity" href="{{route('posts.show', ['shop'=>$post->shop_id, 'post'=>$post->id])}}">
+      @else
+      <a class="users-detail" href="{{route('posts.show', ['shop'=>$post->shop_id, 'post'=>$post->id])}}">
+      @endif
+        @if($post->image == null)
+          <img src="/storage/no-icon.png">
+        @else
+          <img src="{{$post->image}}">
+        @endif
+        <ul>
+          @if($now > $post->day)
+            <li>【終了】&nbsp;&nbsp;{{$post->day->format('m/d')}}&nbsp;&nbsp;&nbsp;&nbsp;{{$post->start_time->format('H:i')}}〜{{$post->end_time->format('H:i')}}</li>
+          @else
+            <li>{{$post->day->format('m/d')}}&nbsp;&nbsp;&nbsp;&nbsp;{{$post->start_time->format('H:i')}}〜{{$post->end_time->format('H:i')}}</li>
+          @endif
+          <li>{{$post->title}}</li>
+          <li>利用カフェ：{{$post->shop->name}}</li>
+          <li>登録ユーザー：{{$post->user->name}}&nbsp;&nbsp;&nbsp;&nbsp;登録日：{{$post->created_at->format('Y-m-d')}}</li>
+        </ul>
+      </a>
+    @empty
+      <p class="empty">予定されているスケジュールはありません。</p>
+    @endforelse
 </div>
 @endsection

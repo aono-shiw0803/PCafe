@@ -78,7 +78,7 @@
       <li><a href="{{route('shops.index')}}">カフェ一覧</a></li>
       @if(Auth::User())
         <li><a href="{{route('shops.create')}}">カフェ登録</a></li>
-        <li><a href="{{route('photos.index')}}">カフェフォト</a></li>
+        <li><a href="{{route('posts.index')}}">スケジュール一覧</a></li>
         <li><a href="{{route('users.index')}}">ユーザー一覧</a></li>
         <li><a href="{{route('users.show', ['user' => Auth::User()->id])}}">マイページ</a></li>
       @else
